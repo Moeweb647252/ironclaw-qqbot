@@ -1,0 +1,43 @@
+{
+  "version": "0.1.0",
+  "wit_version": "0.3.0",
+  "type": "channel",
+  "name": "qqbot",
+  "description": "QQ Bot webhook channel for IronClaw. This first version stores app_id/app_secret in channel config because the current WASM host cannot inject secrets into JSON request bodies for token refresh.",
+  "capabilities": {
+    "http": {
+      "allowlist": [
+        { "host": "bots.qq.com", "path_prefix": "/app/getAppAccessToken" },
+        { "host": "api.sgroup.qq.com", "path_prefix": "/" }
+      ],
+      "rate_limit": {
+        "requests_per_minute": 80,
+        "requests_per_hour": 1000
+      }
+    },
+    "channel": {
+      "allowed_paths": ["/webhook/qqbot"],
+      "allow_polling": false,
+      "workspace_prefix": "channels/qqbot/",
+      "emit_rate_limit": {
+        "messages_per_minute": 100,
+        "messages_per_hour": 5000
+      },
+      "callback_timeout_secs": 30
+    }
+  },
+  "config": {
+    "app_id": "",
+    "app_secret": "",
+    "api_base": "https://api.sgroup.qq.com",
+    "token_url": "https://bots.qq.com/app/getAppAccessToken",
+    "webhook_path": "/webhook/qqbot",
+    "reply_to_message": true,
+    "verify_signature": true,
+    "markdown_support": false,
+    "enable_input_notify": true,
+    "input_notify_seconds": 60,
+    "dm_policy": "pairing",
+    "allow_from": []
+  }
+}

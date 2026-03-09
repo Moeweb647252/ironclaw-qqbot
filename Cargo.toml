@@ -1,6 +1,21 @@
 [package]
-name = "ironclaw-qqbot"
+name = "qqbot-channel"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
+description = "QQ Bot webhook channel for IronClaw"
+
+[lib]
+crate-type = ["cdylib"]
 
 [dependencies]
+ed25519-dalek = { version = "2", default-features = false, features = ["std"] }
+hex = "0.4"
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+wit-bindgen = "0.36"
+
+[profile.release]
+opt-level = "s"
+lto = true
+strip = true
